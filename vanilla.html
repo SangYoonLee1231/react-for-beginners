@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <body>
-    <span id="text">Total Clicks : 0</span>
-    <button id="btn">Click Me</button>
+    <h3 class="title">Total Click : 0</h3>
+    <button class="btn">Click Me</button>
   </body>
   <script>
-    const text = document.getElementById("text");
-    const button = document.getElementById("btn");
+    const btn = document.querySelector(".btn");
+    const title = document.querySelector(".title");
     let cnt = 0;
+
     function handleClick() {
       cnt += 1;
-      text.innerText = `Total Clicks : ${cnt}`
+      title.innerText = `Total Click : ${cnt}`;
     }
-    button.addEventListener("click", handleClick);
+
+    btn.addEventListener("click", handleClick);
   </script>
 </html>
