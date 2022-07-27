@@ -9,16 +9,11 @@
   <script type="text/babel">
     const root = document.getElementById("root");
     const App = () => {
-      let [counter, modifier] = React.useState(0);
-      const onClick = () => {
-        counter = counter + 1;
-        console.log(counter);
-        ReactDOM.render(<App />, root);
-      };
+      const [counter, modifier] = React.useState(866666);
       return (
         <div>
           <h3>Total clicks: {data[0]}</h3>
-          <button onClick="onClick">Click Me</button>
+          <button>Click Me</button>
         </div>
       );
     };
