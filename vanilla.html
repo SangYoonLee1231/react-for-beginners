@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <body>
-    <h3 class="title">Total Click : 0</h3>
-    <button class="btn">Click Me</button>
+    <span>Total Clicks: 0</span>
+    <button id="btn">Click Me</button>
+    <script>
+      let counter = 0;
+      const button = document.querySelector("#btn");
+      const span = document.querySelector("span");
+      function handleClick() {
+        // console.log("I have been clicked");
+        counter += 1;
+        span.innerText = `Total Clicks: ${counter}`;
+      }
+      button.addEventListener("click", handleClick);
+      console.log(counter);
+    </script>
   </body>
-  <script>
-    const btn = document.querySelector(".btn");
-    const title = document.querySelector(".title");
-    let cnt = 0;
-
-    function handleClick() {
-      cnt += 1;
-      title.innerText = `Total Click : ${cnt}`;
-    }
-
-    btn.addEventListener("click", handleClick);
-  </script>
 </html>
