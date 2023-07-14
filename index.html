@@ -8,14 +8,24 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    const span = React.createElement(
-      "span",
+    const title = React.createElement(
+      "h3",
       {
         id: "sexy-span",
         style: { color: "red" },
+        onMouseEnter: () => console.log("mouse enter"),
       },
       "Hello, I'm a span"
     );
-    ReactDOM.render(span, root);
+    const button = React.createElement(
+      "button",
+      {
+        id: "btn",
+        onClick: () => console.log("I'm clicked"),
+      },
+      "Click Me"
+    );
+    const container = React.createElement("div", null, [title, button]);
+    ReactDOM.render(container, root);
   </script>
 </html>
