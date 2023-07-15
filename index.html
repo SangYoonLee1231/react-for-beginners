@@ -10,16 +10,49 @@
     const root = document.getElementById("root");
 
     const App = () => {
-      let [counter, setCounter] = React.useState(10);
-      const onClick = () => {
-        // setCounter(counter + 1);
-        setCounter((current) => current + 1);
-        console.log(counter);
+      const [minutes, setMinutes] = React.useState();
+      const [hours, setHours] = React.useState();
+      const [flipped, setFliped] = React.useState(false);
+      const onChange = (event) => {
+        setMinutes(event.target.value);
+        setHours(event.target.value);
       };
+      const onFlip = () => {
+        setFliped((flipped) => !flipped);
+        reset();
+      };
+      const reset = () => {
+        setMinutes(0);
+        setHours(0);
+      };
+
       return (
         <div>
-          <h3>Total Clicks: {counter}</h3>
-          <button onClick={onClick}>Click Me</button>
+          <div>
+            <h3>Super Converter</h3>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              value={flipped ? minutes : hours * 60}
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              onChange={onChange}
+              disabled={!flipped}
+            />
+            <label htmlFor="hours">Hours</label>
+            <input
+              value={flipped ? Math.round(minutes / 60) : hours}
+              id="hours"
+              placeholder="Hours"
+              type="number"
+              onChange={onChange}
+              disabled={flipped}
+            />
+          </div>
+          <div>
+            <button onClick={reset}>Reset</button>
+            <button onClick={onFlip}>Flip</button>
+          </div>
         </div>
       );
     };
