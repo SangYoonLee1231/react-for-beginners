@@ -34,7 +34,7 @@
               placeholder="Minutes"
               type="number"
               onChange={onChange}
-              disabled={!flipped}
+              disabled={flipped}
             />
             <label htmlFor="hours">Hours</label>
             <input
@@ -43,12 +43,12 @@
               placeholder="Hours"
               type="number"
               onChange={onChange}
-              disabled={flipped}
+              disabled={!flipped}
             />
           </div>
           <div>
             <button onClick={reset}>Reset</button>
-            <button onClick={onFlip}>Flip</button>
+            <button onClick={onFlip}>{flipped ? "Turn back" : "Invert"}</button>
           </div>
         </div>
       );
