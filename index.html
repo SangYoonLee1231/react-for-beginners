@@ -7,52 +7,37 @@
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const root = document.getElementById("root");
-
+    const Btn = ({ text, changeValue }) => {
+      console.log(text + " was rendered");
+      return (
+        <button
+          onClick={changeValue}
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+          }}
+        >
+          {text}
+        </button>
+      );
+    };
+    const MemorizedBtn = React.memo(Btn);
     const App = () => {
-      const [amount, setAmount] = React.useState();
-      const [flipped, setFliped] = React.useState(false);
-      const onChange = (event) => {
-        setAmount(event.target.value);
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => {
+        setValue("Revert Changes");
       };
-      const onFlip = () => {
-        setFliped((flipped) => !flipped);
-        reset();
-      };
-      const reset = () => {
-        setAmount(0);
-      };
-
       return (
         <div>
-          <div>
-            <h3>Super Converter</h3>
-            <label htmlFor="minutes">Minutes</label>
-            <input
-              value={flipped ? amount : amount * 60}
-              id="minutes"
-              placeholder="Minutes"
-              type="number"
-              onChange={onChange}
-              disabled={flipped}
-            />
-            <label htmlFor="hours">Hours</label>
-            <input
-              value={flipped ? Math.round(amount / 60) : amount}
-              id="hours"
-              placeholder="Hours"
-              type="number"
-              onChange={onChange}
-              disabled={!flipped}
-            />
-          </div>
-          <div>
-            <button onClick={reset}>Reset</button>
-            <button onClick={onFlip}>{flipped ? "Turn back" : "Invert"}</button>
-          </div>
+          <MemorizedBtn text={value} changeValue={changeValue} />
+          <MemorizedBtn text="Continue" />
         </div>
       );
     };
+    const root = document.getElementById("root");
     ReactDOM.render(<App />, root);
   </script>
 </html>
